@@ -53,7 +53,7 @@
 				<div class="main_content">
 
 					<div class="alert alert-warning">
-						Request is actually "trading card" on Steam's Market. <input type="button" value="You can reload data" class="btn btn-inverse" />
+						Request is actually "trading card" on Steam's Market. <input id="get-data" type="button" value="You can re-fetch data" class="btn btn-inverse" /><img src="/res/img/ajax-loader.gif" id="loader" style="display:none;margin-left:10px;"/><span id="rows" style="color:black;margin-left:10px;margin-top:2px;"></span>
 					</div>
 					
 					<div class="row-fluid">
@@ -86,11 +86,33 @@
       <script src="/res/js/selectNav.js"></script>
       <!-- common functions -->
       <script src="/res/js/gebo_common.js"></script>
-			
+			<!-- datatables -->
+			<script src="/res/lib/datatables/jquery.dataTables.min.js"></script>
+			<script src="/res/lib/datatables/jquery.dataTables.bootstrap.min.js"></script>
+    
 			<script>
 				$(window).load(function(){
 					$.get('/script/loadjson.php', function(data) {
 						$('#loaddata').html(data);
+						$('#data').dataTable({
+                "sDom": "<'row'<'span6'<'dt_actions'>l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+								"iDisplayLength": 100,
+                "sPaginationType": "bootstrap_alt",
+                "oLanguage": {
+                    "sLengthMenu": "_MENU_ records per page"
+                }
+            });
+					});
+				});
+				$('#get-data').click(function(){
+					$('#loader').show();
+					$.post('/script/request.php',
+					function(data){
+						$('#rows').html('Fetching '+data+' rows, It can take more than 5 minutes.');
+						$.post('/script/createjson.php',{rows:data},
+						function(data){
+						
+						});
 					});
 				});
 			</script>

@@ -634,6 +634,7 @@
 		@media (min-width: 1681px) {
 			body {max-width:1680px;margin:0 auto}
 			header .container-fluid {max-width:1640px;margin:0 auto}
+			
 			#maincontainer {border-right:1px solid #ccc}
 			.main_content {border-left:none}
 			.sidebar {left:50%;margin-left:-841px;border-left:1px solid #ccc}
@@ -655,4 +656,4 @@
 		.nbDays{ display: none; }
 		.nbDaysButton { display: none; }
 
-#pages td{vertical-align:middle;}
+#data td{vertical-align:middle;}
