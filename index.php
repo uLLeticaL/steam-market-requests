@@ -91,7 +91,7 @@
 			<script src="/res/lib/datatables/jquery.dataTables.bootstrap.min.js"></script>
     
 			<script>
-				$(window).load(function(){
+				function loadTable(){
 					$.get('/script/loadjson.php', function(data) {
 						$('#loaddata').html(data);
 						$('#data').dataTable({
@@ -103,6 +103,9 @@
                 }
             });
 					});
+				}
+				$(window).load(function(){
+					loadTable();
 				});
 				$('#get-data').click(function(){
 					$('#loader').show();
@@ -111,7 +114,9 @@
 						$('#rows').html('Fetching '+data+' rows, It can take more than 5 minutes.');
 						$.post('/script/createjson.php',{rows:data},
 						function(data){
-						
+							$('#loader').hide();
+							$('#rows').html('Data fetched!');
+							loadTable();
 						});
 					});
 				});

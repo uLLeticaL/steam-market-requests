@@ -9,7 +9,7 @@ $loop = ceil($total / $limit);
 
 $json = array();
 
-for($i = 0; $i<1; $i++):
+for($i = 0; $i<$loop; $i++):
 	
 	$objects = array();
 	
@@ -65,7 +65,7 @@ endfor;
 
 $encode = json_encode($json);
 
-$handle = fopen("../data/data.json", "a");
+$handle = fopen("../data/data.json", "w+");
 fwrite($handle, $encode);
 fclose($handle);
 
