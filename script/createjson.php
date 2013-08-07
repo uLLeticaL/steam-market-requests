@@ -17,8 +17,6 @@ for($i = 0; $i<$loop; $i++):
 	$x = file_get_contents('http://steamcommunity.com/market/search/render/?query='.$request.'&start='.$start.'&count=100');
 	
 	echo 'http://steamcommunity.com/market/search/render/?query='.$request.'&start='.$start.'&count=100'."\n";
-	
-	$x = file_get_contents('http://steamcommunity.com/market/search/render/?query='.$request.'&start=0&count='.$limit);
 
 	$res = json_decode($x);
 
